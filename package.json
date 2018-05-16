@@ -14,6 +14,7 @@
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "css-loader": "0.28.7",
+    "date-fns": "^2.0.0-alpha.8",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
     "eslint": "4.10.0",
@@ -52,15 +53,17 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "relay:watch":
-      "npx relay-compiler --watch --src ./src --schema ./schema.graphql",
+    "relay:watch": "npx relay-compiler --watch --src ./src --schema ./schema.graphql",
     "relay:compile": "npx relay-compiler --src ./src --schema ./schema.graphql",
-    "schema":
-      "get-graphql-schema https://api.graph.cool/relay/v1/cjeuehpfc0l9h0151h3ca7m29 > ./schema.graphql"
+    "schema": "get-graphql-schema https://api.graph.cool/relay/v1/cjeuehpfc0l9h0151h3ca7m29 > ./schema.graphql"
   },
   "jest": {
-    "collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
-    "setupFiles": ["<rootDir>/config/polyfills.js"],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
@@ -70,10 +73,11 @@
     "transform": {
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|css|json)$)":
-        "<rootDir>/config/jest/fileTransform.js"
+      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
@@ -88,8 +92,12 @@
     ]
   },
   "babel": {
-    "presets": ["react-app"],
-    "plugins": ["relay"]
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      "relay"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
