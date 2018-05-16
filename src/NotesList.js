@@ -29,6 +29,7 @@ class NotesList extends Component {
             toggleEditing={this.toggleEditing}
             key={node.id}
             note={node}
+            viewerId={this.props.viewer.id}
           />
         ))}
         <AddNote viewerId={this.props.viewer.id} />
