@@ -12,6 +12,7 @@ type Note_note$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type NotesList_viewer$ref: FragmentReference;
 export type NotesList_viewer = {|
+  +id: string,
   +allNoteItems: {|
     +edges: ?$ReadOnlyArray<?{|
       +node: {|
@@ -25,17 +26,37 @@ export type NotesList_viewer = {|
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "NotesList_viewer",
   "type": "Viewer",
-  "metadata": null,
+  "metadata": {
+    "connection": [
+      {
+        "count": null,
+        "cursor": null,
+        "direction": "backward",
+        "path": [
+          "allNoteItems"
+        ]
+      }
+    ]
+  },
   "argumentDefinitions": [],
   "selections": [
+    v0,
     {
       "kind": "LinkedField",
-      "alias": null,
-      "name": "allNoteItems",
+      "alias": "allNoteItems",
+      "name": "__NotesList_allNoteItems_connection",
       "storageKey": null,
       "args": null,
       "concreteType": "NoteItemConnection",
@@ -59,19 +80,52 @@ const node/*: ConcreteFragment*/ = {
               "concreteType": "NoteItem",
               "plural": false,
               "selections": [
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "id",
-                  "args": null,
-                  "storageKey": null
-                },
+                v0,
                 {
                   "kind": "FragmentSpread",
                   "name": "Note_note",
                   "args": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "__typename",
+                  "args": null,
+                  "storageKey": null
                 }
               ]
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "cursor",
+              "args": null,
+              "storageKey": null
+            }
+          ]
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "pageInfo",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "hasPreviousPage",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "startCursor",
+              "args": null,
+              "storageKey": null
             }
           ]
         }
@@ -79,6 +133,7 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = 'edc279539f1760e633ebad2af07df4f4';
+(node/*: any*/).hash = '95dc8fd611ba8b05eb20f77da8e9c6c7';
 module.exports = node;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 083e20936feccb1ddcd1519ff86a894e
+ * @relayHash 85b2991f75831c64429e6072149b663d
  */
 
 /* eslint-disable */
@@ -28,12 +28,19 @@ query NotesQuery {
 }
 
 fragment NotesList_viewer on Viewer {
-  allNoteItems {
+  id
+  allNoteItems(last: 100, orderBy: createdAt_ASC) {
     edges {
       node {
         id
         ...Note_note
+        __typename
       }
+      cursor
+    }
+    pageInfo {
+      hasPreviousPage
+      startCursor
     }
   }
 }
@@ -59,7 +66,7 @@ return {
   "operationKind": "query",
   "name": "NotesQuery",
   "id": null,
-  "text": "query NotesQuery {\n  viewer {\n    ...NotesList_viewer\n    id\n  }\n}\n\nfragment NotesList_viewer on Viewer {\n  allNoteItems {\n    edges {\n      node {\n        id\n        ...Note_note\n      }\n    }\n  }\n}\n\nfragment Note_note on NoteItem {\n  id\n  text\n  createdAt\n  updatedAt\n}\n",
+  "text": "query NotesQuery {\n  viewer {\n    ...NotesList_viewer\n    id\n  }\n}\n\nfragment NotesList_viewer on Viewer {\n  id\n  allNoteItems(last: 100, orderBy: createdAt_ASC) {\n    edges {\n      node {\n        id\n        ...Note_note\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Note_note on NoteItem {\n  id\n  text\n  createdAt\n  updatedAt\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -100,12 +107,26 @@ return {
         "concreteType": "Viewer",
         "plural": false,
         "selections": [
+          v0,
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "allNoteItems",
-            "storageKey": null,
-            "args": null,
+            "storageKey": "allNoteItems(last:100,orderBy:\"createdAt_ASC\")",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "last",
+                "value": 100,
+                "type": "Int"
+              },
+              {
+                "kind": "Literal",
+                "name": "orderBy",
+                "value": "createdAt_ASC",
+                "type": "NoteItemOrderBy"
+              }
+            ],
             "concreteType": "NoteItemConnection",
             "plural": false,
             "selections": [
@@ -148,14 +169,74 @@ return {
                         "name": "updatedAt",
                         "args": null,
                         "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "__typename",
+                        "args": null,
+                        "storageKey": null
                       }
                     ]
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "cursor",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "pageInfo",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "PageInfo",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "hasPreviousPage",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "startCursor",
+                    "args": null,
+                    "storageKey": null
                   }
                 ]
               }
             ]
           },
-          v0
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "name": "allNoteItems",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "last",
+                "value": 100,
+                "type": "Int"
+              },
+              {
+                "kind": "Literal",
+                "name": "orderBy",
+                "value": "createdAt_ASC",
+                "type": "NoteItemOrderBy"
+              }
+            ],
+            "handle": "connection",
+            "key": "NotesList_allNoteItems",
+            "filters": []
+          }
         ]
       }
     ]
