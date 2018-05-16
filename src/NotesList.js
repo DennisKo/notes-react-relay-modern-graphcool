@@ -22,7 +22,7 @@ class NotesList extends Component {
     const { allNoteItems } = this.props.viewer;
     return (
       <Fragment>
-        <h1>Notes</h1>
+        <h1>{allNoteItems.edges.length} Notes</h1>
         {allNoteItems.edges.map(({ node }) => (
           <Note
             isEditing={this.state.editingId === node.id}
