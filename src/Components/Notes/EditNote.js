@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditNoteMutation from './EditNoteMutation';
+import EditNoteMutation from './Mutations/EditNoteMutation';
 
 export default class EditNote extends Component {
   state = {
@@ -25,10 +25,7 @@ export default class EditNote extends Component {
 
   handleUpdate = () => {
     const { note, toggleEditing, viewerId } = this.props;
-    EditNoteMutation(note.id, this.state.text, viewerId, res => console.log(res));
-
-    // close editing mode
-    toggleEditing(note.id);
+    EditNoteMutation(note.id, this.state.text, viewerId, () => toggleEditing(note.id));
   };
 
   render() {

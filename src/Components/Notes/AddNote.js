@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AddNoteMutation from './AddNoteMutation';
+import AddNoteMutation from './Mutations/AddNoteMutation';
 
-export default class AddNote extends Component {
+class AddNote extends Component {
   state = {
     text: ''
   };
@@ -13,7 +13,9 @@ export default class AddNote extends Component {
   };
 
   handleSubmit = () => {
-    AddNoteMutation(this.state.text, this.props.viewerId, res => console.log(res));
+    if (this.state.text !== '') {
+      AddNoteMutation(this.state.text, this.props.viewerId, res => console.log(res));
+    }
 
     // reset input
     this.setState({
@@ -38,7 +40,15 @@ export default class AddNote extends Component {
           onKeyPress={this.handleKeyPress}
           placeholder="Press Enter to submit"
         />
+        <AddNoteButton handleSubmit={this.handleSubmit} />
       </div>
     );
   }
 }
+const AddNoteButton = ({ handleSubmit }) => (
+  <button data-testid="addButton" onClick={handleSubmit}>
+    Add Note
+  </button>
+);
+
+export default AddNote;

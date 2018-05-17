@@ -1,6 +1,6 @@
 import { commitMutation, graphql } from 'react-relay';
 import { ConnectionHandler } from 'relay-runtime';
-import environment from './Environment';
+import environment from '../../../Environment';
 
 const mutation = graphql`
   mutation AddNoteMutation($input: CreateNoteItemInput!) {

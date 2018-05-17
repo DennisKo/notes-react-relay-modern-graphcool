@@ -3,7 +3,7 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import Note from './Note';
 import AddNote from './AddNote';
 
-class NotesList extends Component {
+export class NotesList extends Component {
   state = {
     editingId: ''
   };
@@ -20,6 +20,7 @@ class NotesList extends Component {
 
   render() {
     const { allNoteItems } = this.props.viewer;
+
     return (
       <Fragment>
         <h1>{allNoteItems.edges.length} Notes</h1>

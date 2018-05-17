@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { QueryRenderer, graphql } from 'react-relay';
-import environment from './Environment';
+import environment from '../../Environment';
 import NotesList from './NotesList';
-import './App.css';
 
 const NotesQuery = graphql`
   query NotesQuery {
