@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import Note from './Note';
 import AddNote from './AddNote';
+import './Notes.css';
 
 export class NotesList extends Component {
   state = {
@@ -22,19 +23,23 @@ export class NotesList extends Component {
     const { allNoteItems } = this.props.viewer;
 
     return (
-      <Fragment>
-        <h1>{allNoteItems.edges.length} Notes</h1>
-        {allNoteItems.edges.map(({ node }) => (
-          <Note
-            isEditing={this.state.editingId === node.id}
-            toggleEditing={this.toggleEditing}
-            key={node.id}
-            note={node}
-            viewerId={this.props.viewer.id}
-          />
-        ))}
+      <div className="notes">
+        <h1>You have {allNoteItems.edges.length} Notes!</h1>
+        <div className="notes-list-container">
+          <div className="notes-list">
+            {allNoteItems.edges.map(({ node }) => (
+              <Note
+                isEditing={this.state.editingId === node.id}
+                toggleEditing={this.toggleEditing}
+                key={node.id}
+                note={node}
+                viewerId={this.props.viewer.id}
+              />
+            ))}
+          </div>
+        </div>
         <AddNote viewerId={this.props.viewer.id} />
-      </Fragment>
+      </div>
     );
   }
 }

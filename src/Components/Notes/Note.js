@@ -1,26 +1,34 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import format from 'date-fns/format';
 import EditNote from './EditNote';
 import DeleteNoteMutation from './Mutations/DeleteNoteMutation';
+import avatar from '../../images/avatar.png';
 
 class Note extends Component {
   render() {
     const { note, toggleEditing, isEditing, viewerId } = this.props;
     return (
       <div className="note-container">
-        {isEditing ? (
-          <EditNote note={note} toggleEditing={toggleEditing} viewerId={viewerId} />
-        ) : (
-          <div className="note-content">
-            <div className="note-text">{note.text}</div>
-            <div className="note-timestamp">{format(note.updatedAt, 'DD.MM.YYYY')}</div>
+        <div className="note-content">
+          <div className="avatar">
+            <img src={avatar} alt="An avatar" />
           </div>
-        )}
-        <button onClick={() => toggleEditing(note.id)}>{isEditing ? 'Discard' : 'Edit'}</button>
-        <button onClick={() => DeleteNoteMutation(note.id, viewerId, res => console.log(res))}>
-          Delete
-        </button>
+          {isEditing ? (
+            <EditNote note={note} toggleEditing={toggleEditing} viewerId={viewerId} />
+          ) : (
+            <div className="note-text">{note.text}</div>
+          )}
+        </div>
+        <div className="note-meta">
+          <div className="note-options">
+            <div onClick={() => toggleEditing(note.id)}>{isEditing ? 'Undo' : 'Edit'}</div>
+            <div onClick={() => DeleteNoteMutation(note.id, viewerId, res => console.log(res))}>
+              Delete
+            </div>
+          </div>
+          <div className="note-timestamp">{format(note.updatedAt, 'DD.M.YYYY H:MM')}</div>
+        </div>
       </div>
     );
   }

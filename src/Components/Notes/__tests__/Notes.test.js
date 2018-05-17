@@ -88,7 +88,7 @@ describe('Notes', () => {
     });
     noteTimestamps.forEach((note, index) => {
       expect(note).toHaveTextContent(
-        format(mockedQueryResponse.allNoteItems.edges[index].node.updatedAt, 'DD.MM.YYYY')
+        format(mockedQueryResponse.allNoteItems.edges[index].node.updatedAt, 'DD.M.YYYY H:MM')
       );
     });
   });

@@ -31,7 +31,7 @@ export default class EditNote extends Component {
   render() {
     const { text } = this.state;
     return (
-      <div>
+      <div className="note-edit">
         <input value={text} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
       </div>
     );

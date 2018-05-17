@@ -33,7 +33,7 @@ class AddNote extends Component {
 
   render() {
     return (
-      <div>
+      <div className="addNote">
         <input
           value={this.state.text}
           onChange={this.handleChange}
