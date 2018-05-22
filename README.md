@@ -1,5 +1,7 @@
 Install dependencies: `yarn`
 
+Install global dependencies: `yarn global add get-graphql-schema`
+
 Get schema: `yarn schema`
 
 Compile: `yarn relay:compile`
